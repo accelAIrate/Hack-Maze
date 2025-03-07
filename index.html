@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Autopilot - All Chapters</title>
+    <link rel="icon" href="./logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-tech-blue-theme"> <!--  Using Dark Tech Blue Theme -->
+    <header>
+        <div class="logo">
+            <h2 id="hackmaze-logo-text">Hack Maze</h2>
+        </div>
+        <h1>Project Autopilot</h1>
+        <h2>The Pure Vision Autonomous Navigation Challenge</h2>
+        <nav>
+            <ul>
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#hardware">Hardware</a></li>
+                <li><a href="#vision">Vision</a></li>
+                <li><a href="#acceleration">AI Acceleration</a></li>
+                <li><a href="#control">Control System</a></li>
+                <li><a href="#benchmarking">Benchmarking</a></li>
+                <li><a href="#code-quality">Code Quality</a></li>
+                <li><a href="#challenge">Challenge</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="intro">
+            <h3>Introduction and Challenge Overview</h3>
+            <p>Welcome to Project Autopilot. This hackathon challenges you to develop a cutting-edge autonomous navigation system for a small-scale robot, using only camera input and machine learning. This project mirrors the real-world challenges faced by developers of autonomous vehicles, focusing on robust perception and efficient processing on resource-constrained hardware.</p>
+            <p>For this hackathon, you'll construct a Raspberry Pi robot tasked with true autonomous navigation. Mimicking the approach of advanced self-driving cars like Tesla, your robot must navigate a track simulating real road conditions – lane markings, obstacles, and traffic signals – using only visual data from a single camera. Forget LiDAR and ultrasonic sensors; this is a pure vision, real-world inspired challenge.</p>
+            <p>This project emphasizes <strong>"AI acceleration"</strong>. You'll be working with machine learning models running in real-time on the Raspberry Pi, a platform with limited computational resources. Therefore, optimizing your models for speed and efficiency is paramount. This is not just about <i>making it work</i>; it's about making it work <i>well</i>.</p>
+            <p>Furthermore, this is a collaborative challenge. You'll be working in teams, and we expect to see clear evidence of effective teamwork, including well-documented code, organized project structure, and diligent use of Git for version control.</p>
+        </section>
+
+        <section id="hardware">
+            <h3>Chapter 1: Hardware Platform – Your Autonomous Robot</h3>
+            <p>You'll be constructing your robot using the following components:</p>
+            <ul>
+                <li><b>Processing Unit (Raspberry Pi):</b> The central processing unit for your robot. It will run your AI models and control the robot's movements. The Raspberry Pi's processing power is essential for this project.
+                    <p class="technical-specification">(Technical Specification): Raspberry Pi 3 Model B, at 1GB RAM.</p>
+                </li>
+                <li><b>Vision Sensor (Raspberry Pi Camera Module):</b> The robot's sole source of visual data. It captures images of the track, which are fed into your AI models.
+                    <p class="technical-specification">(Technical Specification): Official Raspberry Pi Camera Module V2 or V3. Secure mounting is critical for consistent image input.</p>
+                </li>
+                <li><b>Robot Chassis (Base Platform):</b> The physical structure that holds all the components together. You will be provided with the raw materials.:
+                    <p>(Recommended): Use the provided chassis and other components</p>
+                    <p>(Advanced): You may design and build your own chassis if you have the necessary skills and resources.</p>
+                </li>
+                <li><b>Actuators (Motors and Motor Controller):</b> These provide the robot's movement. The motor controller acts as an interface between the Raspberry Pi and the motors.
+                    <p class="technical-specification">(Technical Specification): A motor controller board (H-bridge) is required </p>
+                </li>
+                <li><b>Power Source (Battery):</b> A portable power bank will provide the necessary energy for the Raspberry Pi and the motors.
+                </li>
+                <li><b>Essential Development Tools:</b>
+                    <ul>
+                        <li>Laptop: Required for initial setup, debugging, and direct interaction with the Raspberry Pi.</li>
+                        <li>Network Access (Wi-Fi): Use Pi 3's built in Wifi, you'll need this for remote access.</li>
+                    </ul>
+                 </li>
+            </ul>
+        </section>
+
+         <section id="vision">
+            <h3>Chapter 2: Vision System – Machine Learning for Perception</h3>
+            <p>Your robot's ability to "see" and understand its environment will be entirely based on machine learning. This section outlines the core components of your vision pipeline:</p>
+            <ul>
+                <li><b>Data Acquisition and Labeling:</b> The foundation of any machine learning system is data.
+                    <ul>
+                        <li><b>Data Collection:</b> You will need to capture a substantial dataset of images from the robot's perspective, showing the track under various conditions (e.g., different lighting, positions).</li>
+                        <li><b>Data Labeling:</b> This is a critical and potentially time-consuming (depends on your creativity) step. You must accurately label your images to provide "ground truth" for your models:
+                            <ul>
+                                <li>Lane Keeping: Label the lane boundaries in each image (e.g., using semantic segmentation masks).</li>
+                                <li>Obstacle Detection: Draw bounding boxes around the obstacles (other cars) in your images.</li>
+                                <li>(Tools): Consider using annotation tools to facilitate the labeling process.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><b>Model Selection and Training:</b>
+                    <ul>
+                        <li><b>Lane Keeping:</b> You will train a machine learning model for semantic segmentation. This model will learn to classify each pixel in the input image as belonging to a lane or not.
+                            <p>(Training Procedure): Use appropriate tools to train your model. Consider techniques like transfer learning to improve performance and reduce training time.</p>
+                        </li>
+                        <li><b>Obstacle Detection:</b> You will train an object detection model to identify and locate other cars on the track.  This model should also be capable of recognizing the state of a traffic light .
+                            <p>
+                            Your object detection model *must* be trained to predict a limited set of output classes. Your model should only predict the following:
+                            </p>
+                            <ul>
+                                <li>`"car_obstacle"`</li>
+                                <li>`"traffic_light_red"`</li>
+                                <li>`"traffic_light_yellow"`</li>
+                                <li>`"traffic_light_green"`</li>
+                            </ul>
+                            <p>
+                             You *must* ensure that your model outputs the correct number of classes. Your training data *must* be labeled according to these restricted classes.  Judges will verify this through code review, model inspection, and analysis of your training logs and dataset. Failure to adhere to this output class restriction will result in significant point deductions. You are responsible for creating and labeling a suitable training dataset.
+                            </p>
+                        </li>
+                        <li><b>Traffic Light Recognition :</b> You can extend your system to recognize traffic lights. This would involve training a classification model to identify the state of the traffic light (red, yellow, green).
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section id="acceleration">
+            <h3>Chapter 3: AI Acceleration – Optimizing for the Edge</h3>
+            <p>Running complex AI models in real-time on a Raspberry Pi requires careful optimization. This is where AI acceleration techniques become crucial.</p>
+            <ul>
+                <li><b>Model Optimization :</b> Implement model optimization techniques to reduce the size and computational cost of your models, which is crucial to avoid resource limitations on Pi 3.
+                </li>
+                <li><b>Model Size Reduction :</b> Techniques to reduce the size of the model can lead to faster and more efficient performance without significant loss of accuracy.
+                </li>
+              <li><b>Efficient Model Architecture Selection (Critical):</b>  Choosing a computationally efficient model architecture is essential for performance on resource-constrained devices. </li>
+              <li><b>Advanced Optimization Methods:</b> Explore advanced methods to further refine your model for better performance on the edge device.</li>
+              <li><b>Deployment on Raspberry Pi:</b> Ensure your trained models are converted and optimized for efficient deployment on the Raspberry Pi platform.</li>
+            </ul>
+        </section>
+          <section id="control">
+            <h3>Chapter 4: Control System – From Perception to Action</h3>
+              <p>This section describes how to connect your AI models to the robot's actuators (motors).</p>
+            <ul>
+              <li><b>Inference:</b> Your code will continuously capture images from the camera and run inference using your machine learning models. This will produce:
+                <ul>
+                    <li>Lane segmentation masks (from the lane keeping model).</li>
+                    <li>Bounding boxes and class labels for detected obstacles (from the object detection model).</li>
+                    <li>Traffic light state.</li>
+                </ul>
+              </li>
+              <li><b>Control Logic:</b> Based on the outputs of your AI models, you will implement control logic to determine the appropriate steering and speed commands for the robot.
+                <ul>
+                    <li>Lane Following: Use the lane segmentation mask to calculate a steering angle that keeps the robot centered within the lane.</li>
+                    <li>Obstacle Avoidance: Use the bounding box information from the `"car_obstacle"` class detections to implement logic to stop or steer around obstacles.</li>
+                    <li>Traffic Light Response: Implement logic to respond appropriately to the detected traffic light states:
+                        <ul>
+                            <li><b>Red Light (`traffic_light_red`):</b> The robot *must* come to a complete stop and remain stopped for *5 seconds* before proceeding (if the path is clear after the 5-second stop).</li>
+                            <li><b>Yellow Light (`traffic_light_yellow`):</b> The robot *must* significantly reduce its speed (e.g., to half its normal speed) for *5 seconds* and proceed with caution, being prepared to stop if an obstacle appears.</li>
+                            <li><b>Green Light (`traffic_light_green`):</b> No specific action is required beyond the normal lane-following and obstacle avoidance behavior.  The robot may proceed.</li>
+                        </ul>
+                    </li>
+                </ul>
+              </li>
+            </ul>
+        </section>
+        <section id="benchmarking">
+            <h3>Chapter 5: Benchmarking and Optimization – Measuring Performance</h3>
+            <p>Rigorous benchmarking is crucial for evaluating your system's performance and identifying areas for improvement.</p>
+            <ul>
+              <li><b>Key Performance Indicators:</b>
+                <ul>
+                    <li>Inference Time: The time required for your AI models to process a single image frame. Lower is better.</li>
+                    <li>Frames Per Second (FPS): The overall processing rate of your system, including image capture, preprocessing, inference, and control. Higher is better.</li>
+                    <li>Resource Utilization: Monitor CPU usage, memory usage, and temperature on the Raspberry Pi using tools like top or htop. Lower resource utilization is better.</li>
+                </ul>
+              </li>
+              <li><b>Profiling:</b> Use profiling tools to identify performance bottlenecks within your code. This can help you pinpoint areas where optimization efforts will be most effective.</li>
+            </ul>
+        </section>
+        <section id="code-quality">
+            <h3>Chapter 6: Code Quality, Collaboration, and Version Control</h3>
+            <p>Effective teamwork and high-quality code are essential for success.</p>
+               <ul>
+                <li><b>Code Style and Documentation:</b>
+                    <ul>
+                        <li>Readability: Write clean, well-structured code that is easy to understand. Use meaningful variable and function names.</li>
+                        <li>Comments: Explain the why behind your code, not just the what. Comment complex logic, algorithms, and design decisions.</li>
+                        <li>Docstrings: Use docstrings to document all functions and classes, explaining their purpose, parameters, and return values.</li>
+                    </ul>
+                 </li>
+                <li><b>Git and Version Control (Mandatory):</b>
+                    <ul>
+                        <li>Repository: Use Git for version control. Create a project repository (e.g., on GitHub) to track all code changes.</li>
+                        <li>
+                            <b>Frequent Commits:</b> Commit your code regularly, with descriptive commit messages. Each commit should represent a logical unit of work.
+                            <p><b>✅ Good Commit Message Example:</b> <br>>> <code>feat: Implement obstacle detection using SSD MobileNet</code></p> <!-- Still keeping this example as it is about commit message style, not architecture -->
+                            <p><b>❌ Bad Commit Message Example:</b> <br>>> <code>Fixed stuff</code></p> <!-- Still keeping this example as it is about commit message style, not architecture -->
+                            <p><b>More Examples:</b></p>
+                            <ul>
+                                <li><code>fix: Resolve memory leak in obstacle detection</code></li>
+                                <li><code>chore: Refactor lane segmentation module</code></li>
+                                <li><code>docs: Update README with installation steps</code></li>
+                            </ul>
+                        </li>
+
+                        <li>Branching: Use branches to develop new features or experiment with different approaches, keeping your main branch stable.</li>
+                        <li>.gitignore: Use a .gitignore file to exclude unnecessary files from your repository.</li>
+                    </ul>
+                </li>
+                <li><b>Collaboration:</b>
+                    <ul>
+                        <li>Communication: Maintain clear and open communication within your team.</li>
+                        <li>Code Reviews: Regularly review each other's code to identify potential issues, improve code quality, and share knowledge.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section id="challenge">
+            <h3>Chapter 7: The Challenge – Competition and Evaluation</h3>
+            <p>The final stage of the hackathon is the competition, where you will demonstrate your robot's capabilities on the test track.</p>
+            <ul>
+              <li><b>Multiple Runs:</b> Each team will have 2 attempts to complete the track.</li>
+              <li><b>Scoring:</b> Points will be awarded based on:
+                <ul>
+                    <li><b>Successful Completion:</b> The robot successfully navigates the entire track. <b>(Base Score: 500 points)</b></li>
+                    <li><b>Speed:</b> The time taken to complete the course. <b>(Up to 300 points awarded inversely proportional to time - faster time = more points)</b></li>
+                    <li><b>Accuracy:</b>
+                        <ul>
+                            <li><b>Lane Keeping:</b> Robot stays within lane markings. <b>(Up to 100 points - Judged on track run, deductions for going significantly outside lanes)</b></li>
+                            <li><b>Obstacle Avoidance:</b> Robot successfully avoids obstacles. <b>(Up to 100 points - Points awarded per obstacle cleanly avoided)</b></li>
+                            <li><b>Traffic Light Response:</b> Robot correctly responds to traffic signals . <b>(Up to 100 points - Points awarded for correct stops and cautious driving at signals)</b></li>
+                        </ul>
+                    </li>
+                    <li><b>Performance Metrics:</b> Inference time, FPS, and resource utilization will be measured and considered. <b>(Up to 100 points - Points awarded for optimized performance, low inference time and resource usage)</b></li>
+                </ul>
+              </li>
+              <li><b>Penalties:</b> Points will be deducted for:
+                <ul>
+                    <li><b>Going off-track:</b>  <b>(-50 points per significant off-track instance)</b></li>
+                    <li><b>Colliding with obstacles:</b> <b>(-100 points per collision)</b></li>
+                    <li><b>Traffic Light Violations:</b> <b>(-150 points per red light violation, -75 points per yellow light violation if implemented and violated)</b></li>
+                    <li><b>Output Class Violation:</b> <b>(-200 points -  Significant deduction for not adhering to the specified output classes in your object detection model)</b></li>
+                </ul>
+              </li>
+              <li><b>Judging Criteria:</b> The judging panel will evaluate your project based on the following:
+                <ul>
+                    <li>Functionality: Does the robot successfully perform the required tasks (lane keeping, obstacle avoidance, traffic light recognition)?</li>
+                    <li>Performance: How fast, efficient, and accurate is the robot?</li>
+                    <li>Robustness: How well does the robot handle variations in lighting and track conditions?</li>
+                    <li>Code Quality: Is the code well-structured, documented, and optimized?</li>
+                    <li>Innovation: Did the team employ any novel or creative solutions?</li>
+                    <li>Optimization Strategy: Can the team clearly articulate their approach to AI acceleration and demonstrate its effectiveness through benchmarking results?</li>
+                    <li>Presentation: Can the team effectively communicate their design, implementation, and results?</li>
+                    <li>Teamwork and Collaboration: (Evidenced by Git history and code reviews)</li>
+                </ul>
+              </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2025 Indian Institute of Information Technology, Dharwad. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('main > section');
+            const navLinks = document.querySelectorAll('nav a');
+
+            function showSection(sectionId) {
+                sections.forEach(section => {
+                    section.style.display = 'none'; // Hide all sections
+                });
+                const sectionToShow = document.getElementById(sectionId);
+                if (sectionToShow) {
+                    sectionToShow.style.display = 'block'; // Show the target section
+                    // Smooth scroll to the top of the section
+                    sectionToShow.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+            // Initially show the intro section if no hash in URL, otherwise show target section
+            const hash = window.location.hash.substring(1); // Remove '#'
+            if (hash) {
+                showSection(hash);
+            } else {
+                showSection('intro'); // Default to intro
+                window.location.hash = 'intro'; // Set hash to intro on initial load for back button
+            }
+
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default link behavior
+                    const targetId = link.getAttribute('href').substring(1); // Remove '#'
+                    showSection(targetId);
+                    window.location.hash = targetId; // Update URL hash for history and bookmarking
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+/*  =========================================================================
+    Project Autopilot: Next-Gen - Enhanced Style Sheet (style.css)
+    Centered Text Version - Dark Tech Blue Theme (Corrected Main Text Center)
+    ========================================================================= */
+
+/* --- Color Scheme Variables --- */
+
+:root {
+    /* Example 6: "Dark Tech Blue" Scheme (Dark Mode) - ACTIVE THEME */
+    --primary-color: #a8785a;
+    --primary-color-hover: #8c654e;
+    --heading-color: #4e342e;
+    --text-color: #5d4037;
+    --light-text-color: #795548;
+    --footer-text-color: #795548;
+    --background-color: #f5f0ec; /* Fallback background color */
+    --container-background: #fff;
+    --nav-background: #fff;
+    --nav-link-background: #f0ece9;
+    --nav-link-hover-background: var(--primary-color);
+    --nav-current-background: var(--primary-color);
+    --section-border-color: #e0dad6;
+}
+
+
+/* --- Apply CSS Variables throughout the rest of your style.css --- */
+
+/*  --- 1. Global Styles and Reset ---  */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    line-height: 1.7;
+    color: var(--text-color);
+    background-color: var(--background-color); /* Fallback background color - keep this for older browsers */
+    background: linear-gradient(to bottom right, #f5f0ec, #e0dad6); /* **Make sure this line is EXACTLY like this** */
+    background-size: cover; /* Keep these lines */
+    background-position: center; /* Keep these lines */
+    background-repeat: no-repeat; /* Keep these lines */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    margin: 0;
+}
+
+
+.container {
+    max-width: 1140px; /* Wider container for larger screens */
+    margin: 40px auto; /* Corrected: Center horizontally using auto margins */
+    background-color: var(--container-background); /* Use CSS variable */
+    padding: 60px; /* More generous padding inside container */
+    border-radius: 12px; /* More rounded corners for a softer look */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Softer, wider shadow */
+}
+
+
+/*  --- 2. Typography ---  */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif; /* Stronger heading font */
+    font-weight: 700;
+    color: var(--heading-color); /* Use CSS variable */
+    line-height: 1.3;
+    margin-bottom: 20px;
+    text-align: center; /* **ADD THIS LINE:** Center headings */
+}
+
+h1 {
+    font-size: 3.2em;
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-size: 2.4em;
+    margin-bottom: 20px;
+    color: var(--primary-color); /* Primary accent color for subheadings */
+}
+
+h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    border-bottom: 3px solid rgba(58, 123, 213, 0.2); /* Keep the underline color consistent with primary */
+    border-bottom-color: var(--primary-color); /* Use variable for border color */
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+/* p, ul, ol {  REMOVED THIS: Apply left alignment to paragraphs and lists */
+/*    text-align: left;*/
+/*}*/
+
+
+p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: var(--text-color); /* Use CSS variable */
+    text-align: left; /* **ADD THIS LINE:** Center paragraphs */
+}
+
+ul, ol {
+    text-align: left; /* Keep lists left-aligned */
+}
+
+
+a {
+    color: var(--primary-color); /* Use CSS variable for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-color-hover); /* Use CSS variable for hover color */
+}
+
+
+/*  --- 3. Header and Navigation ---  */
+header {
+    text-align: center; /* Keep header text centered */
+    margin-bottom: 60px; /* More spacing below header */
+}
+
+/* --- 3.1. Styled "Hackmaze" Logo Text --- */
+.logo {
+    /* Keep any existing logo container styles if you have them, otherwise you can add: */
+    /*  display: flex;       Optional: If you want to further control layout in logo div */
+    /*  justify-content: center; Optional: Center text horizontally in logo div */
+    /*  align-items: center;     Optional: Center text vertically in logo div */
+}
+
+#hackmaze-logo-text {
+    font-family: 'Poppins', sans-serif; /* Use the Poppins font (like headings) */
+    font-weight: 700;             /* Bold font weight */
+    font-size: 5em;             /* Large font size - adjust as needed */
+    color: var(--primary-color);   /* Use the primary color from your theme */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle text shadow for depth */
+    letter-spacing: -2px;        /* Slightly reduce letter spacing for a tighter look */
+    line-height: 1;              /* Adjust line height to fit well in logo area */
+    margin-bottom: 0;             /* Remove default margin from h2 */
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Smooth transitions */
+}
+
+#hackmaze-logo-text:hover {
+    color: var(--primary-color-hover); /* Hover color */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+
+nav {
+    margin-top: 30px;
+    background-color: var(--nav-background); /* Use CSS variable */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle nav shadow */
+    padding: 0; /* Remove padding from nav itself */
+}
+
+nav ul {
+    list-style: none;
+    padding: 20px 30px; /* Padding inside the nav ul */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center nav links */
+    gap: 25px; /* Increased gap between nav items */
+    text-align: center; /* Center text in nav ul */
+}
+
+nav li {
+    margin: 0;
+}
+
+nav a {
+    display: block;
+    padding: 12px 24px; /* Larger padding for nav links */
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--light-text-color); /* Use CSS variable */
+    background-color: var(--nav-link-background); /* Use CSS variable */
+    border-radius: 8px;
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+
+nav a:hover,
+nav a:focus {
+    background-color: var(--nav-link-hover-background); /* Use CSS variable */
+    color: #fff;
+    box-shadow: 0 6px 12px rgba(58, 123, 213, 0.2);
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+nav .current-page-link {
+    background-color: var(--nav-current-background); /* Use CSS variable */
+    color: #fff;
+    box-shadow: 0 6px 12px rgba(58, 123, 213, 0.25);
+}
+
+nav .current-page-link:hover,
+nav .current-page-link:focus {
+    background-color: var(--primary-color-hover); /* Use CSS variable */
+    transform: translateY(-2px); /* Keep lift effect */
+}
+
+
+/*  --- 4. Main Content Sections ---  */
+main {
+    margin-top: 40px;
+    text-align: center; /* Center text in main content area */
+}
+
+main > section {
+    padding: 60px 0; /* Increased padding for sections */
+    border-bottom: 1px solid var(--section-border-color); /* Use CSS variable */
+    display: none; /* Initially hide all sections */
+    scroll-margin-top: 80px; /* Add scroll margin to sections for header spacing */
+    margin-left: 20px; /* Corrected: Add left margin for section content */
+    margin-right: 20px; /* Corrected: Add right margin for section content */
+    /* text-align: center;  REMOVED THIS:  Centering on section level not needed now */
+}
+
+main > section:last-child {
+    border-bottom: none;
+}
+
+main ul {
+    list-style-type: none; /* Remove default list bullet */
+    margin-left: 0; /* Reset margin */
+    padding-left: 20px; /* Add padding for indentation */
+    margin-bottom: 25px;
+    text-align: left; /* Keep lists left-aligned */
+}
+
+main ol {
+    text-align: left; /* Keep lists left-aligned */
+    margin-bottom: 25px;
+    margin-left: 25px;
+}
+
+
+main ul li {
+    margin-bottom: 12px;
+    position: relative; /* For custom bullet positioning */
+    padding-left: 15px; /* Space for custom bullet */
+}
+
+main ul li::before {
+    content: ''; /* Create custom bullet */
+    position: absolute;
+    left: 0;
+    top: 8px; /* Adjust vertical alignment */
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-color); /* Use CSS variable */
+    border-radius: 50%; /* Make it round */
+}
+
+main ul ul {
+    margin-top: 12px;
+    margin-bottom: 0;
+    padding-left: 20px; /* Indent nested lists further */
+}
+
+main ul ul li::before {
+    background-color: #777; /* Different bullet color for nested lists */
+}
+
+main p > .technical-specification,
+li > p > .technical-specification {
+    font-style: italic;
+    color: #777;
+    display: block;
+    margin-top: 10px; /* More margin above technical specs */
+    font-size: 0.95em;
+    line-height: 1.5;
+    text-align: left; /* Left align technical specifications */
+}
+
+
+/*  --- 5. Footer ---  */
+footer {
+    text-align: center; /* Keep footer text centered */
+    margin-top: 80px; /* More top margin for footer */
+    padding-top: 30px;
+    border-top: 2px solid var(--section-border-color); /* Use CSS variable */
+    border-top-color: var(--section-border-color);
+    border-top-style: solid;
+    border-top-width: 2px;
+    color: var(--footer-text-color); /* Use CSS variable */
+    font-size: 0.9em;
+    opacity: 0.8; /* Subtle footer opacity */
+}
+
+/* --- 5.1. Footer Paragraph Text (Corrected to center text) --- */
+footer p {
+    text-align: center; /* Center text within footer paragraphs */
+}
+
+
+/*  --- 6. Responsive Design ---  */
+@media (max-width: 992px) {
+    .container {
+        max-width: 96%; /* Wider container on smaller screens */
+        padding: 40px;
+        margin: 20px auto; /* Keep auto margin for horizontal centering */
+    }
+
+    header {
+        margin-bottom: 40px;
+    }
+
+    header h1 {
+        font-size: 2.8em;
+    }
+
+    header h2 {
+        font-size: 1.8em;
+    }
+
+    nav ul {
+        padding: 15px 20px;
+        gap: 15px;
+    }
+
+    nav a {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    main > section {
+        padding: 40px 0;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 30px;
+        margin: 15px auto; /* Keep auto margin for horizontal centering */
+    }
+
+    header {
+        margin-bottom: 30px;
+    }
+
+    header h1 {
+        font-size: 2.4em;
+    }
+
+    header h2 {
+        font-size: 1.6em;
+    }
+
+    nav ul {
+        padding: 10px 15px;
+        justify-content: space-around; /* Distribute links more evenly */
+        gap: 10px;
+    }
+
+    nav a {
+        padding: 8px 16px;
+        font-size: 0.95em;
+    }
+
+    main > section {
+        padding: 30px 0;
+    }
+
+    main h3 {
+        font-size: 1.6em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+}
+
+
+@media (max-width: 576px) {
+    .container {
+        padding: 20px;
+        margin: 10px auto; /* Keep auto margin for horizontal centering */
+    }
+
+    header {
+        margin-bottom: 20px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    header h2 {
+        font-size: 1.4em;
+    }
+
+    nav ul {
+        padding: 8px 10px;
+        flex-direction: column; /* Stack nav links vertically on very small screens */
+        align-items: center; /* Center align stacked links */
+        gap: 8px;
+    }
+
+    nav li {
+        width: 100%; /* Full width for stacked nav items */
+        text-align: center; /* Center text in stacked items */
+    }
+
+    nav a {
+        width: 100%; /* Full width for nav links in stacked layout */
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    main > section {
+        padding: 20px 0;
+    }
+
+    main h3 {
+        font-size: 1.4em;
+    }
+}
